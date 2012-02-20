@@ -30,7 +30,7 @@ public class MainWindow extends JFrame {
 	private Map<String, Property> properties = new HashMap<String, Property>();
 	private Map<String, EventSet> eventSet = new HashMap<String, EventSet>();
 	private Reflection reflection;
-	private JTree tree;
+	private JTree tree = new JTree();
 
 
 	
@@ -57,9 +57,7 @@ public class MainWindow extends JFrame {
 		tabPane.addTab("Methods", panel1);
 		tabPane.addTab("Properties", panel2);
 		tabPane.addTab("Event Sets",panel3);
-		
-		
-		
+		tree.setModel(null);
 		this.pack();
 		button.addActionListener(new ActionListener(){
 
@@ -93,12 +91,11 @@ public class MainWindow extends JFrame {
 		}
 		TreeNode rootNode = top;
 		DefaultTreeModel model = new DefaultTreeModel(rootNode);
-		tree = new JTree(model);
+		tree.setModel(model);
 		
-        JComponent panel3 = new JScrollPane(tree);
-       // tabPane.remove(2);
-        tree.updateUI();
-        //tabPane.addTab("Event Sets", panel3);
+     //   JComponent panel3 = new JScrollPane(tree);
+      //  tabPane.remove(2); 
+      //  tabPane.addTab("Event Sets", panel3);
 	}
 
 
