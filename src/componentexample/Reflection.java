@@ -46,12 +46,10 @@ public class Reflection {
 				textArea.append(");" +  "\n\n");
 				getEventSet(methods[i]);
 			}			
-			int i = 0;
 			for(Map.Entry<String, Property> entry : properties.entrySet()){
 				String key = entry.getKey();
 				Property value = entry.getValue();
-				textArea2.append(key + " "+ i +" " + value.getEncapsulation() + " || " + value.getType() + " || "  + "\n");
-				i++;
+				textArea2.append(key + " " + value.getType() + "  " + value.getEncapsulation() + "\n\n");
 			}
 
 		}
@@ -59,7 +57,7 @@ public class Reflection {
 			System.out.println("no class");
 		}
 	}
-
+ 
 
 	public void getProperty(Method methodName){
 		String name = methodName.getName();

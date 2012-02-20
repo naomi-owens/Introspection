@@ -94,9 +94,11 @@ public class MainWindow extends JFrame {
 		TreeNode rootNode = top;
 		DefaultTreeModel model = new DefaultTreeModel(rootNode);
 		tree = new JTree(model);
+		
         JComponent panel3 = new JScrollPane(tree);
-        tabPane.remove(2);
-        tabPane.addTab("Event Sets", panel3);
+       // tabPane.remove(2);
+        tree.updateUI();
+        //tabPane.addTab("Event Sets", panel3);
 	}
 
 
