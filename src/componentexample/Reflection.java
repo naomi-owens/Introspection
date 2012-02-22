@@ -14,14 +14,18 @@ import javax.swing.*;
 public class Reflection {
 	private JTextArea textArea;
 	private JTextArea textArea2;
+	private JTextArea textArea3;
+	private JTextArea textArea4;
 	private Map<String, Property> properties;
 	private Map<String, EventSet> events = new HashMap<String, EventSet>();
 
 
-	public Reflection(JTextArea textArea, JTextArea textArea2, Map<String, Property> properties){
+	public Reflection(JTextArea textArea, JTextArea textArea2,JTextArea textArea3, JTextArea textArea4, Map<String, Property> properties){
 		this.textArea = textArea;
 		this.textArea2 = textArea2;
+		this.textArea3 = textArea3;
 		this.properties = properties;
+		this.textArea4 = textArea3;
 		
 	}
 	
@@ -31,7 +35,10 @@ public class Reflection {
 			textArea.setText(null);
 			textArea2.setText(null);
 			Class myClass = Class.forName(className);
+			getFields(myClass);
 			Method methods[] = myClass.getMethods();
+			events.clear();
+			properties.clear();
 			for(int i = 0; i<methods.length; i++){
 				getProperty(methods[i]);
 				Class<?> klass[] = methods[i].getParameterTypes();
@@ -98,6 +105,32 @@ public class Reflection {
 	
 	public Map<String, EventSet> getEvents(){
 		return events;
+	}
+	
+	public void getFields(Class klass){
+		int num = klass.getFields().length;
+		//if(klass.getFields().length = null){
+		String length = "" + num;
+		if(!length.isEmpty()){
+			textArea3.setText("The class has" +  length  + "fields");
+		} else{
+			textArea3.setText("The class has no fields");
+		}
+	}
+	
+	public void checkNoArgueMentConstructor(Class klass){
+		Constructor[] constructor = klass.getConstructors();
+		boolean noArguement = false;
+		int i = 0;
+		for(int j = 0; j<constructor.length; j++){
+			Class<?>[] cklass = constructor[i].getParameterTypes();
+			if(cklass[0].getName()== null){
+				noArguement = true;
+			}
+		}
+		if(noArguement == true){
+			
+		}
 	}
 	
 }

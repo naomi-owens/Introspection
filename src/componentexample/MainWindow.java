@@ -24,6 +24,8 @@ public class MainWindow extends JFrame {
 	private JMenuBar menu = new JMenuBar();
 	private JTextArea textArea = new JTextArea(30, 35);
 	private JTextArea textArea2 = new JTextArea(30, 35);
+	private JTextArea textArea3 = new JTextArea(30, 35);
+	private JTextArea textArea4 = new JTextArea(30, 35);
 	private JTabbedPane tabPane = new JTabbedPane();
 	private Map<String, Property> properties = new HashMap<String, Property>();
 	private Map<String, EventSet> eventSet = new HashMap<String, EventSet>();
@@ -48,13 +50,17 @@ public class MainWindow extends JFrame {
 		this.add(className);
 		this.add(button, "span1, split4,wrap");
 		this.add(tabPane, BorderLayout.CENTER);
-		reflection = new Reflection(textArea, textArea2, properties);
+		reflection = new Reflection(textArea, textArea2,textArea3, properties);
 		JComponent panel1 = new JScrollPane(textArea);
 		JComponent panel2 = new JScrollPane(textArea2);
 		JComponent panel3 = new JScrollPane(tree);
+		JComponent panel4 = new JScrollPane(textArea3);
+		JComponent panel5 = new JScrollPane(textArea4);
 		tabPane.addTab("Methods", panel1);
 		tabPane.addTab("Properties", panel2);
 		tabPane.addTab("Event Sets",panel3);
+		tabPane.addTab("Fields", panel4);
+		tabPane.addTab("Fields", panel5);
 		tree.setModel(null);
 		this.pack();
 		button.addActionListener(new ActionListener(){
