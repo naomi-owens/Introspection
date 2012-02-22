@@ -7,6 +7,7 @@ public class EventSet {
 	private Method method;
 	private String eventName;
 	private Method[] events;
+	private boolean adapter = false;
 
 	
 	
@@ -30,6 +31,10 @@ public class EventSet {
 	
 	public Method[] getEvents(){
 		return events;
+	}
+	
+	public void setAdapter(boolean adapter){
+		this.adapter = true;
 	}
 
 

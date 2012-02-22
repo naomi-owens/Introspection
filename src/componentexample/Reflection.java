@@ -115,7 +115,7 @@ public class Reflection {
 		//if(klass.getFields().length = null){
 		String length = "" + num;
 		if(!length.isEmpty()){
-			textArea3.setText("The class has" +  length  + "fields");
+			textArea3.setText("The class has " +  length  + " fields");
 		} else{
 			textArea3.setText("The class has no fields");
 		}
@@ -135,6 +135,23 @@ public class Reflection {
 			textArea4.setText("this class does have a no arguement constructor.");
 		} else{
 			textArea4.setText("this class does not have a no arguement constructor.");
+		}
+	}
+	// was unsure how to get the adapters from the same package and didnt have much time
+	//but i would have searched for them as follows and had the tre add "(adapter class exists)" 
+	// if the boolean was true
+	public void getadapterSet(Method methodName){
+		String name = methodName.getName();
+		Pattern setMethodPattern = Pattern.compile("^add(\\w+)adapter$");
+		Matcher matcher = setMethodPattern.matcher(name);
+		String word = null;
+		if(matcher.matches()){
+			char lcase = matcher.group(1).toLowerCase().charAt(0);
+			word = matcher.group(1);
+			word = word.replace(matcher.group(1).charAt(0), lcase);
+			if(events.containsKey(word)){
+				events.get(word).setAdapter(true);
+			}
 		}
 	}
 	
