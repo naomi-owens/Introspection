@@ -50,7 +50,7 @@ public class MainWindow extends JFrame {
 		this.add(className);
 		this.add(button, "span1, split4,wrap");
 		this.add(tabPane, BorderLayout.CENTER);
-		reflection = new Reflection(textArea, textArea2,textArea3, properties);
+		reflection = new Reflection(textArea, textArea2,textArea3,textArea4, properties);
 		JComponent panel1 = new JScrollPane(textArea);
 		JComponent panel2 = new JScrollPane(textArea2);
 		JComponent panel3 = new JScrollPane(tree);
@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
 		tabPane.addTab("Properties", panel2);
 		tabPane.addTab("Event Sets",panel3);
 		tabPane.addTab("Fields", panel4);
-		tabPane.addTab("Fields", panel5);
+		tabPane.addTab("constructor", panel5);
 		tree.setModel(null);
 		this.pack();
 		button.addActionListener(new ActionListener(){

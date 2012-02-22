@@ -25,7 +25,7 @@ public class Reflection {
 		this.textArea2 = textArea2;
 		this.textArea3 = textArea3;
 		this.properties = properties;
-		this.textArea4 = textArea3;
+		this.textArea4 = textArea4;
 		
 	}
 	
@@ -34,8 +34,11 @@ public class Reflection {
 		try {
 			textArea.setText(null);
 			textArea2.setText(null);
+			textArea3.setText(null);
+			textArea4.setText(null);
 			Class myClass = Class.forName(className);
 			getFields(myClass);
+			checkNoArgueMentConstructor(myClass);
 			Method methods[] = myClass.getMethods();
 			events.clear();
 			properties.clear();
@@ -121,15 +124,17 @@ public class Reflection {
 	public void checkNoArgueMentConstructor(Class klass){
 		Constructor[] constructor = klass.getConstructors();
 		boolean noArguement = false;
-		int i = 0;
 		for(int j = 0; j<constructor.length; j++){
-			Class<?>[] cklass = constructor[i].getParameterTypes();
-			if(cklass[0].getName()== null){
+			Class<?>[] cklass = constructor[j].getParameterTypes();
+			String length = "" + cklass.length;
+			if(!length.isEmpty()){
 				noArguement = true;
 			}
 		}
 		if(noArguement == true){
-			
+			textArea4.setText("this class does have a no arguement constructor.");
+		} else{
+			textArea4.setText("this class does not have a no arguement constructor.");
 		}
 	}
 	
