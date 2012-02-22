@@ -8,17 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 
 
 public class Reflection {
 	private JTextArea textArea;
 	private JTextArea textArea2;
-	private JTabbedPane tabPane;
 	private Map<String, Property> properties;
 	private Map<String, EventSet> events = new HashMap<String, EventSet>();
-	private DefaultMutableTreeNode[] eventsArray;
 
 
 	public Reflection(JTextArea textArea, JTextArea textArea2, Map<String, Property> properties){
@@ -36,11 +33,10 @@ public class Reflection {
 			Class myClass = Class.forName(className);
 			Method methods[] = myClass.getMethods();
 			for(int i = 0; i<methods.length; i++){
-				String property =methods[i].getName();
 				getProperty(methods[i]);
 				Class<?> klass[] = methods[i].getParameterTypes();
 				
-				textArea.append(Modifier.toString(methods[i].getModifiers()) + " " + methods[i].getReturnType()
+				textArea.append(Modifier.toString(methods[i].getModifiers()) + " " + methods[i].getReturnType().getSimpleName()
 						+ " "+ methods[i].getName() + "("); 
 				printParameters(klass);
 				textArea.append(");" +  "\n\n");
@@ -70,7 +66,7 @@ public class Reflection {
 			word = word.replace(matcher.group(1).charAt(0), lcase);
 			if(properties.containsKey(word)){
 				properties.get(word).setMethod(methodName);
-			} else if(!properties.containsKey(word) && word != null){
+			} else if(!properties.containsKey(word)){
 				properties.put(word, new Property(methodName, word));
 			}
 		} 
@@ -84,14 +80,6 @@ public class Reflection {
 		return name;
 	}
 	
-	public void printEvents(Method [] events){
-		String name = null;
-		for(int j = 0; j<events.length; j++){
-			DefaultMutableTreeNode event =  new DefaultMutableTreeNode(events[j].getName());
-			eventsArray[j] = event;
-		}
-	}
-
 
 	public void getEventSet(Method methodName){
 		String name = methodName.getName();
@@ -105,7 +93,6 @@ public class Reflection {
 			if(!events.containsKey(word)){
 				events.put(word,new EventSet(methodName, word));
 			}
-			
 		}
 	}
 	

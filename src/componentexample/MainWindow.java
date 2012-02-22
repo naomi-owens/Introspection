@@ -18,14 +18,12 @@ import net.miginfocom.swing.MigLayout;
 
 public class MainWindow extends JFrame {
 
-	private JPanel panel = new JPanel();
 	private JLabel classLabel = new JLabel("Class Name"); 
 	private JTextField className = new JTextField("javax.swing.JButton",15);
 	private JButton button = new JButton("get methods");
 	private JMenuBar menu = new JMenuBar();
 	private JTextArea textArea = new JTextArea(30, 35);
 	private JTextArea textArea2 = new JTextArea(30, 35);
-	private JTextArea textArea3 = new JTextArea(30, 35);
 	private JTabbedPane tabPane = new JTabbedPane();
 	private Map<String, Property> properties = new HashMap<String, Property>();
 	private Map<String, EventSet> eventSet = new HashMap<String, EventSet>();
@@ -93,9 +91,7 @@ public class MainWindow extends JFrame {
 		DefaultTreeModel model = new DefaultTreeModel(rootNode);
 		tree.setModel(model);
 		
-     //   JComponent panel3 = new JScrollPane(tree);
-      //  tabPane.remove(2); 
-      //  tabPane.addTab("Event Sets", panel3);
+       
 	}
 
 
